@@ -41,12 +41,13 @@ resource "azurerm_app_service" "this" {
   }
 
   site_config {
-    always_on         = var.always_on
-    health_check_path = "/healthz"
-    number_of_workers = var.number_of_workers
-    http2_enabled     = true
-    ftps_state        = "Disabled"
-    linux_fx_version  = "DOCKER|${var.image}"
+    always_on              = var.always_on
+    health_check_path      = "/healthz"
+    number_of_workers      = var.number_of_workers
+    http2_enabled          = true
+    ftps_state             = "Disabled"
+    linux_fx_version       = "DOCKER|${var.image}"
+    vnet_route_all_enabled = length(var.subnet_ids) > 0
   }
 
   auth_settings {
@@ -66,4 +67,10 @@ resource "azurerm_app_service" "this" {
   }
 
   tags = var.tags
+}
+
+resource "azurerm_app_service_virtual_network_swift_connection" "these" {
+  count          = length(var.subnet_ids)
+  app_service_id = azurerm_app_service.this.id
+  subnet_id      = var.subnet_ids[count.index]
 }

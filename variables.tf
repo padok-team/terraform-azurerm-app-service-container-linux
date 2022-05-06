@@ -65,6 +65,12 @@ variable "identity_ids" {
   default     = []
 }
 
+variable "subnet_ids" {
+  type        = list(string)
+  description = "List of subnet ids for network swift connections."
+  default     = []
+}
+
 variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource."
