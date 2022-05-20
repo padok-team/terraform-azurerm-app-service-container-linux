@@ -19,10 +19,18 @@ variable "name" {
   description = "Specifies the name of the App Service. Changing this forces a new resource to be created."
 }
 
+variable "client_cert_enabled" {
+  type        = bool
+  description = "Should a client certificate be required for connections to the App Service?"
+  default     = true
+}
+
 variable "app_settings" {
   type        = map(string)
   description = "A key-value pair of App Settings."
-  default     = {}
+  default = {
+    DOCKER_REGISTRY_SERVER_URL = "https://index.docker.io"
+  }
 }
 
 variable "image" {
@@ -51,12 +59,21 @@ variable "backup" {
 variable "always_on" {
   type        = bool
   description = "Is the App Service always on?"
-  default     = false
+  default     = true
 }
 variable "number_of_workers" {
   type        = number
   description = "Number of workers to configure for the App Service."
   default     = 1
+}
+
+variable "connection_strings" {
+  type = map(object({
+    type  = string
+    value = string
+  }))
+  description = "Connection strings to configure for the App Service."
+  default     = {}
 }
 
 variable "identity_ids" {
@@ -71,8 +88,26 @@ variable "subnet_ids" {
   default     = []
 }
 
+variable "slots" {
+  type        = number
+  description = "Number of additional App Service Slots to create."
+  default     = 0
+}
+
 variable "tags" {
   type        = map(string)
   description = "A mapping of tags to assign to the resource."
   default     = {}
+}
+
+variable "logs_enabled" {
+  type        = bool
+  description = "Should logs be enabled for the App Service?"
+  default     = true
+}
+
+variable "log_analytics_workspace_id" {
+  type        = string
+  description = "The Log Analytics Workspace ID to use for logging."
+  default     = null
 }

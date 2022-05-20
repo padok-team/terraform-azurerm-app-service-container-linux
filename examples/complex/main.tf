@@ -50,6 +50,8 @@ resource "azurerm_app_service_plan" "this" {
   kind     = "Linux"
   reserved = true
 
+  per_site_scaling = true
+
   sku {
     tier = "Standard"
     size = "S1"
@@ -67,12 +69,16 @@ module "app_service_container_linux" {
   app_service_plan = azurerm_app_service_plan.this
 
   app_settings = {
-    "padok" = "cool"
+    DOCKER_REGISTRY_SERVER_URL = "https://index.docker.io"
+    padok                      = "cool"
   }
 
   subnet_ids = [azurerm_subnet.this.id]
 
   identity_ids = [azurerm_user_assigned_identity.this.id]
+
+  number_of_workers = 3
+  slots             = 3
 
   depends_on = [
     azurerm_app_service_plan.this
