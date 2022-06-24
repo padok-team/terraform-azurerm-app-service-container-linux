@@ -48,10 +48,12 @@ module "app_service" {
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | The Resource group where to deploy AppService. | <pre>object({<br>    name     = string,<br>    location = string<br>  })</pre> | n/a | yes |
 | <a name="input_always_on"></a> [always\_on](#input\_always\_on) | Is the App Service always on? | `bool` | `true` | no |
 | <a name="input_app_service_plan"></a> [app\_service\_plan](#input\_app\_service\_plan) | App Service Plan ID. The instance should allow App Service to scale (per site scaling enabled). | <pre>object({<br>    id = string<br>  })</pre> | `null` | no |
+| <a name="input_app_service_plan_sku"></a> [app\_service\_plan\_sku](#input\_app\_service\_plan\_sku) | The SKU of the App Service Plan. | <pre>object({<br>    tier     = string<br>    size     = string<br>    capacity = number<br>  })</pre> | <pre>{<br>  "capacity": null,<br>  "size": "S1",<br>  "tier": "Standard"<br>}</pre> | no |
 | <a name="input_app_settings"></a> [app\_settings](#input\_app\_settings) | A key-value pair of App Settings. | `map(string)` | <pre>{<br>  "DOCKER_REGISTRY_SERVER_URL": "https://index.docker.io"<br>}</pre> | no |
 | <a name="input_backup"></a> [backup](#input\_backup) | Backup object to configure the App Service. | <pre>object({<br>    name                = string<br>    enabled             = bool<br>    storage_account_url = string<br>    schedule = object({<br>      frequency_interval       = string<br>      frequency_unit           = string<br>      keep_at_least_one_backup = bool<br>      retention_period_in_days = string<br>      start_time               = string<br>    })<br>  })</pre> | `null` | no |
 | <a name="input_client_cert_enabled"></a> [client\_cert\_enabled](#input\_client\_cert\_enabled) | Should a client certificate be required for connections to the App Service? | `bool` | `true` | no |
 | <a name="input_connection_strings"></a> [connection\_strings](#input\_connection\_strings) | Connection strings to configure for the App Service. | <pre>map(object({<br>    type  = string<br>    value = string<br>  }))</pre> | `{}` | no |
+| <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | Health Check path in application. | `string` | `"/healthz"` | no |
 | <a name="input_identity_ids"></a> [identity\_ids](#input\_identity\_ids) | List of identity ids. | `list(string)` | `[]` | no |
 | <a name="input_image"></a> [image](#input\_image) | Docker image to deploy at App Service generation.  Will only be defined on the first run, and will be ignored by Terraform on subsequent runs. Your application configuration should be separated from your infrastructure configuration. | `string` | `"index.docker.io/busybox:latest"` | no |
 | <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | The Log Analytics Workspace ID to use for logging. | `string` | `null` | no |
@@ -67,3 +69,7 @@ module "app_service" {
 |------|-------------|
 | <a name="output_this"></a> [this](#output\_this) | The App Service resource instance. |
 <!-- END_TF_DOCS -->
+
+## License
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)

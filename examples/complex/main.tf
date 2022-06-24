@@ -80,6 +80,8 @@ module "app_service_container_linux" {
   number_of_workers = 3
   slots             = 3
 
+  logs_enabled = true
+
   depends_on = [
     azurerm_app_service_plan.this
   ]

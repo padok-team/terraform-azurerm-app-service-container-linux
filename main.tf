@@ -12,8 +12,9 @@ resource "azurerm_app_service_plan" "this" {
   reserved = true
 
   sku {
-    tier = "Standard"
-    size = "S1"
+    tier     = var.app_service_plan_sku.tier
+    size     = var.app_service_plan_sku.size
+    capacity = var.app_service_plan_sku.capacity
   }
 }
 
@@ -46,7 +47,7 @@ resource "azurerm_app_service" "this" {
 
   site_config {
     always_on              = var.always_on
-    health_check_path      = "/healthz"
+    health_check_path      = var.health_check_path
     number_of_workers      = var.number_of_workers
     http2_enabled          = true
     ftps_state             = "Disabled"
@@ -102,7 +103,7 @@ resource "azurerm_app_service_slot" "these" {
 
   site_config {
     always_on              = var.always_on
-    health_check_path      = "/healthz"
+    health_check_path      = var.health_check_path
     number_of_workers      = var.number_of_workers
     http2_enabled          = true
     ftps_state             = "Disabled"

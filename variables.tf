@@ -6,6 +6,23 @@ variable "resource_group" {
   description = "The Resource group where to deploy AppService."
 }
 
+###############################
+# App Service Plan
+###############################
+variable "app_service_plan_sku" {
+  type = object({
+    tier     = string
+    size     = string
+    capacity = number
+  })
+  description = "The SKU of the App Service Plan."
+  default = {
+    tier     = "Standard"
+    size     = "S1"
+    capacity = null
+  }
+}
+
 variable "app_service_plan" {
   type = object({
     id = string
@@ -14,6 +31,9 @@ variable "app_service_plan" {
   default     = null
 }
 
+############################
+# App Service
+############################
 variable "name" {
   type        = string
   description = "Specifies the name of the App Service. Changing this forces a new resource to be created."
@@ -31,6 +51,13 @@ variable "app_settings" {
   default = {
     DOCKER_REGISTRY_SERVER_URL = "https://index.docker.io"
   }
+}
+
+
+variable "health_check_path" {
+  type        = string
+  description = "Health Check path in application."
+  default     = "/healthz"
 }
 
 variable "image" {
@@ -61,6 +88,7 @@ variable "always_on" {
   description = "Is the App Service always on?"
   default     = true
 }
+
 variable "number_of_workers" {
   type        = number
   description = "Number of workers to configure for the App Service."
