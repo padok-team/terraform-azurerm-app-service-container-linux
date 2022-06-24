@@ -66,7 +66,9 @@ module "app_service_container_linux" {
     name     = azurerm_resource_group.this.name
     location = azurerm_resource_group.this.location
   }
-  app_service_plan = azurerm_app_service_plan.this
+
+  create_app_service_plan = false
+  app_service_plan_id     = azurerm_app_service_plan.this.id
 
   app_settings = {
     DOCKER_REGISTRY_SERVER_URL = "https://index.docker.io"
@@ -78,7 +80,7 @@ module "app_service_container_linux" {
   identity_ids = [azurerm_user_assigned_identity.this.id]
 
   number_of_workers = 3
-  slots             = 3
+  slot_count        = 3
 
   logs_enabled = true
 

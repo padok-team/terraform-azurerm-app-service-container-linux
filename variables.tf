@@ -9,6 +9,12 @@ variable "resource_group" {
 ###############################
 # App Service Plan
 ###############################
+variable "app_service_plan_name" {
+  type        = string
+  description = "The name of the App Service Plan."
+  default     = null
+}
+
 variable "app_service_plan_sku" {
   type = object({
     tier     = string
@@ -23,10 +29,14 @@ variable "app_service_plan_sku" {
   }
 }
 
-variable "app_service_plan" {
-  type = object({
-    id = string
-  })
+variable "create_app_service_plan" {
+  type        = bool
+  description = "Decide if the module should create its own App Service plan. Should be false if app_service_plan_id is configured."
+  default     = true
+}
+
+variable "app_service_plan_id" {
+  type        = string
   description = "App Service Plan ID. The instance should allow App Service to scale (per site scaling enabled)."
   default     = null
 }
@@ -116,10 +126,16 @@ variable "subnet_ids" {
   default     = []
 }
 
-variable "slots" {
+variable "slot_count" {
   type        = number
   description = "Number of additional App Service Slots to create."
   default     = 0
+}
+
+variable "slot_prefix" {
+  type        = string
+  description = "Slot name prefix."
+  default     = null
 }
 
 variable "tags" {

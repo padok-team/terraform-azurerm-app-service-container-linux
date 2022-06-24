@@ -1,10 +1,12 @@
 locals {
-  app_service_plan_id = var.app_service_plan == null ? azurerm_app_service_plan.this[0].id : var.app_service_plan.id
+  app_service_plan_name = var.app_service_plan_name == null ? "${var.name}-plan" : var.app_service_plan_name
+  app_service_plan_id   = var.create_app_service_plan == true ? azurerm_app_service_plan.this[0].id : var.app_service_plan_id
+  slot_prefix           = var.slot_prefix == null ? "${var.name}-slot-" : var.slot_prefix
 }
 
 resource "azurerm_app_service_plan" "this" {
-  count               = var.app_service_plan == null ? 1 : 0
-  name                = "${var.name}-plan"
+  count               = var.create_app_service_plan == true ? 1 : 0
+  name                = local.app_service_plan_name
   location            = var.resource_group.location
   resource_group_name = var.resource_group.name
 
@@ -90,8 +92,8 @@ resource "azurerm_app_service_virtual_network_swift_connection" "these" {
 }
 
 resource "azurerm_app_service_slot" "these" {
-  count               = var.slots
-  name                = "${var.name}-slot-${count.index}"
+  count               = var.slot_count
+  name                = "${local.slot_prefix}${count.index}"
   app_service_name    = azurerm_app_service.this.name
   location            = var.resource_group.location
   resource_group_name = var.resource_group.name
