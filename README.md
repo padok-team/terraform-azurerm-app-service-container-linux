@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Azure App Service (Linux Container) Terraform module](#azure-app-service-linux-container-terraform-module)
+  - [User Stories for this module](#user-stories-for-this-module)
+  - [Usage](#usage)
+  - [Examples](#examples)
+  - [Modules](#modules)
+  - [Inputs](#inputs)
+  - [Outputs](#outputs)
+  - [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Azure App Service (Linux Container) Terraform module
 
 Terraform module which creates App Service resources on Azure, configured for use with a Linux Docker image.
