@@ -63,6 +63,12 @@ variable "app_settings" {
   }
 }
 
+variable "enable_auth_settings" {
+  type        = bool
+  description = "Enable Auth Settings"
+  default     = true
+}
+
 
 variable "health_check_path" {
   type        = string

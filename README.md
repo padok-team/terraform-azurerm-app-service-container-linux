@@ -69,6 +69,7 @@ module "app_service" {
 | <a name="input_client_cert_enabled"></a> [client\_cert\_enabled](#input\_client\_cert\_enabled) | Should a client certificate be required for connections to the App Service? | `bool` | `true` | no |
 | <a name="input_connection_strings"></a> [connection\_strings](#input\_connection\_strings) | Connection strings to configure for the App Service. | <pre>map(object({<br>    type  = string<br>    value = string<br>  }))</pre> | `{}` | no |
 | <a name="input_create_app_service_plan"></a> [create\_app\_service\_plan](#input\_create\_app\_service\_plan) | Decide if the module should create its own App Service plan. Should be false if app\_service\_plan\_id is configured. | `bool` | `true` | no |
+| <a name="input_enable_auth_settings"></a> [enable\_auth\_settings](#input\_enable\_auth\_settings) | Enable Auth Settings | `bool` | `true` | no |
 | <a name="input_health_check_path"></a> [health\_check\_path](#input\_health\_check\_path) | Health Check path in application. | `string` | `"/healthz"` | no |
 | <a name="input_identity_ids"></a> [identity\_ids](#input\_identity\_ids) | List of identity ids. | `list(string)` | `[]` | no |
 | <a name="input_image"></a> [image](#input\_image) | Docker image to deploy at App Service generation.  Will only be defined on the first run, and will be ignored by Terraform on subsequent runs. Your application configuration should be separated from your infrastructure configuration. | `string` | `"index.docker.io/busybox:latest"` | no |

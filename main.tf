@@ -58,7 +58,7 @@ resource "azurerm_app_service" "this" {
   }
 
   auth_settings {
-    enabled = true
+    enabled = var.enable_auth_settings
   }
 
   dynamic "connection_string" {
@@ -77,8 +77,7 @@ resource "azurerm_app_service" "this" {
 
   lifecycle {
     ignore_changes = [
-      site_config.0.linux_fx_version,
-      app_settings
+      site_config.0.linux_fx_version
     ]
   }
 
@@ -86,14 +85,14 @@ resource "azurerm_app_service" "this" {
 }
 
 resource "azurerm_app_service_virtual_network_swift_connection" "these" {
-  count          = length(var.subnet_ids)
+  for_each       = { for i, v in var.subnet_ids : i => v }
   app_service_id = azurerm_app_service.this.id
-  subnet_id      = var.subnet_ids[count.index]
+  subnet_id      = each.value
 }
 
 resource "azurerm_app_service_slot" "these" {
-  count               = var.slot_count
-  name                = "${local.slot_prefix}${count.index}"
+  for_each            = { for k in range(var.slot_count) : k => "" }
+  name                = "${local.slot_prefix}${each.key}"
   app_service_name    = azurerm_app_service.this.name
   location            = var.resource_group.location
   resource_group_name = var.resource_group.name
@@ -114,7 +113,7 @@ resource "azurerm_app_service_slot" "these" {
   }
 
   auth_settings {
-    enabled = true
+    enabled = var.enable_auth_settings
   }
 
   dynamic "connection_string" {
@@ -133,8 +132,7 @@ resource "azurerm_app_service_slot" "these" {
 
   lifecycle {
     ignore_changes = [
-      site_config.0.linux_fx_version,
-      app_settings
+      site_config.0.linux_fx_version
     ]
   }
 
