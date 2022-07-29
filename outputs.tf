@@ -1,4 +1,4 @@
-output "example" {
-  value       = "ressource_type.name.atttibute"
-  description = "A meaningful description"
+output "this" {
+  value       = azurerm_app_service.this
+  description = "The App Service resource instance."
 }
