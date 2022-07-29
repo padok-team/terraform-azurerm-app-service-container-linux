@@ -91,7 +91,7 @@ resource "azurerm_app_service_virtual_network_swift_connection" "these" {
 }
 
 resource "azurerm_app_service_slot" "these" {
-  for_each            = { for k in range(var.slot_count) : k => "" }
+  for_each            = { for k in range(var.slot_count) : k => tostring(k) }
   name                = "${local.slot_prefix}${each.key}"
   app_service_name    = azurerm_app_service.this.name
   location            = var.resource_group.location
