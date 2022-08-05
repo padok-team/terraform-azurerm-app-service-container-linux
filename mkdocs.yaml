@@ -1,0 +1,8 @@
+---
+site_name: terraform-azurerm-app-service-container-linux
+
+repo_name: padok-team/terraform-azurerm-app-service-container-linux
+repo_url: https://github.com/padok-team/terraform-azurerm-app-service-container-linux
+
+plugins:
+  - techdocs-core
