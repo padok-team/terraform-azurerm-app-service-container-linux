@@ -1,0 +1,17 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: terraform-azurerm-app-service-container-linux
+  description: Terraform module which creates App Service resources on Azure, configured for use with a Linux Docker image.
+  tags:
+    - "terraform"
+    - "azure"
+  annotations:
+    github.com/project-slug: padok-team/terraform-azurerm-app-service-container-linux
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: module
+  system: terraform
+  owner: library-azure
+  lifecycle: awaiting-feedback
