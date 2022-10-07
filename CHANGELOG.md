@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.0...v0.1.1) (2022-10-07)
+
+
+### Bug Fixes
+
+* **site-config:** add Site config override configuration in variables ([3a8ca5c](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/commit/3a8ca5c3cf1efd1032e22ad78f7e6cf634576b69))
+
 ## 0.1.0 (2022-07-29)
 
 
