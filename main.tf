@@ -48,13 +48,23 @@ resource "azurerm_app_service" "this" {
   }
 
   site_config {
-    always_on              = var.always_on
-    health_check_path      = var.health_check_path
-    number_of_workers      = var.number_of_workers
-    http2_enabled          = true
-    ftps_state             = "Disabled"
+    always_on                           = lookup(var.site_config_override, "always_on", true)
+    health_check_path                   = lookup(var.site_config_override, "health_check_path", "/healthz")
+    number_of_workers                   = lookup(var.site_config_override, "number_of_workers", 1)
+    scm_type                            = lookup(var.site_config_override, "scm_type", "None")
+    http2_enabled                       = lookup(var.site_config_override, "http2_enabled", true)
+    ftps_state                          = lookup(var.site_config_override, "ftps_state", "Disabled")
+    acr_user_managed_identity_client_id = lookup(var.site_config_override, "acr_user_managed_identity_client_id", null)
+
+    dynamic "ip_restriction" {
+      for_each = lookup(var.site_config_override, "ip_restriction", [])
+      content {
+        ip_address = ip_restriction.value
+        priority   = 65000
+      }
+    }
     linux_fx_version       = "DOCKER|${var.image}"
-    vnet_route_all_enabled = length(var.subnet_ids) > 0
+    vnet_route_all_enabled = lookup(var.site_config_override, "vnet_route_all_enabled", length(var.subnet_ids) > 0)
   }
 
   auth_settings {
@@ -103,13 +113,23 @@ resource "azurerm_app_service_slot" "these" {
   app_settings = var.app_settings
 
   site_config {
-    always_on              = var.always_on
-    health_check_path      = var.health_check_path
-    number_of_workers      = var.number_of_workers
-    http2_enabled          = true
-    ftps_state             = "Disabled"
+    always_on                           = lookup(var.site_config_override, "always_on", true)
+    health_check_path                   = lookup(var.site_config_override, "health_check_path", "/healthz")
+    number_of_workers                   = lookup(var.site_config_override, "number_of_workers", 1)
+    scm_type                            = lookup(var.site_config_override, "scm_type", "None")
+    http2_enabled                       = lookup(var.site_config_override, "http2_enabled", true)
+    ftps_state                          = lookup(var.site_config_override, "ftps_state", "Disabled")
+    acr_user_managed_identity_client_id = lookup(var.site_config_override, "acr_user_managed_identity_client_id", null)
+
+    dynamic "ip_restriction" {
+      for_each = lookup(var.site_config_override, "ip_restriction", [])
+      content {
+        ip_address = ip_restriction.value
+        priority   = 65000
+      }
+    }
     linux_fx_version       = "DOCKER|${var.image}"
-    vnet_route_all_enabled = length(var.subnet_ids) > 0
+    vnet_route_all_enabled = lookup(var.site_config_override, "vnet_route_all_enabled", length(var.subnet_ids) > 0)
   }
 
   auth_settings {
