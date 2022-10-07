@@ -69,17 +69,16 @@ variable "enable_auth_settings" {
   default     = true
 }
 
-
-variable "health_check_path" {
-  type        = string
-  description = "Health Check path in application."
-  default     = "/healthz"
-}
-
 variable "image" {
   type        = string
   description = "Docker image to deploy at App Service generation.  Will only be defined on the first run, and will be ignored by Terraform on subsequent runs. Your application configuration should be separated from your infrastructure configuration."
   default     = "index.docker.io/busybox:latest"
+}
+
+variable "site_config_override" {
+  description = "The override configuration of site_config parameters."
+  type        = map(any)
+  default     = {}
 }
 
 variable "backup" {
@@ -97,18 +96,6 @@ variable "backup" {
   })
   description = "Backup object to configure the App Service."
   default     = null
-}
-
-variable "always_on" {
-  type        = bool
-  description = "Is the App Service always on?"
-  default     = true
-}
-
-variable "number_of_workers" {
-  type        = number
-  description = "Number of workers to configure for the App Service."
-  default     = 1
 }
 
 variable "connection_strings" {
