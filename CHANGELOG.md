@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.1...v0.1.2) (2022-10-07)
+
+
+### Bug Fixes
+
+* **site_config:** change default site_config ([5303990](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/commit/5303990ee8fdf41dd67fe4a6b4f9e184686eaf1d))
+
 ## [0.1.1](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.0...v0.1.1) (2022-10-07)
 
 
