@@ -73,7 +73,7 @@ module "app_service" {
 | <a name="input_image"></a> [image](#input\_image) | Docker image to deploy at App Service generation.  Will only be defined on the first run, and will be ignored by Terraform on subsequent runs. Your application configuration should be separated from your infrastructure configuration. | `string` | `"index.docker.io/busybox:latest"` | no |
 | <a name="input_log_analytics_workspace_id"></a> [log\_analytics\_workspace\_id](#input\_log\_analytics\_workspace\_id) | The Log Analytics Workspace ID to use for logging. | `string` | `null` | no |
 | <a name="input_logs_enabled"></a> [logs\_enabled](#input\_logs\_enabled) | Should logs be enabled for the App Service? | `bool` | `true` | no |
-| <a name="input_site_config_override"></a> [site\_config\_override](#input\_site\_config\_override) | The override configuration of site\_config parameters. | `map(any)` | `{}` | no |
+| <a name="input_site_config_override"></a> [site\_config\_override](#input\_site\_config\_override) | The override configuration of site\_config parameters. | `any` | `{}` | no |
 | <a name="input_slot_count"></a> [slot\_count](#input\_slot\_count) | Number of additional App Service Slots to create. | `number` | `0` | no |
 | <a name="input_slot_prefix"></a> [slot\_prefix](#input\_slot\_prefix) | Slot name prefix. | `string` | `null` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of subnet ids for network swift connections. | `list(string)` | `[]` | no |

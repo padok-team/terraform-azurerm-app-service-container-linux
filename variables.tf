@@ -77,7 +77,7 @@ variable "image" {
 
 variable "site_config_override" {
   description = "The override configuration of site_config parameters."
-  type        = map(any)
+  type        = any
   default     = {}
 }
 
