@@ -160,7 +160,7 @@ resource "azurerm_app_service_slot" "these" {
 }
 
 module "logger" {
-  source                     = "git@github.com:padok-team/terraform-azurerm-logger.git?ref=v0.1.3"
+  source                     = "git@github.com:padok-team/terraform-azurerm-logger.git?ref=v0.2.0"
   count                      = var.logs_enabled ? 1 : 0
   log_analytics_workspace_id = var.log_analytics_workspace_id
   resource_group_name        = var.resource_group.name
