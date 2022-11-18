@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.3...v0.1.4) (2022-11-18)
+
+
+### Bug Fixes
+
+* **logger:** fic config & examples for logger activation ([8720275](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/commit/87202757a230638920067014398918651fbe9e96))
+
 ## [0.1.3](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.2...v0.1.3) (2022-10-10)
 
 
