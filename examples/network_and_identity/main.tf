@@ -79,10 +79,13 @@ module "app_service_container_linux" {
 
   identity_ids = [azurerm_user_assigned_identity.this.id]
 
-  number_of_workers = 3
-  slot_count        = 3
+  site_config_override = {
+    number_of_workers = 3
+  }
 
-  logs_enabled = true
+  slot_count = 3
+
+  logs_enabled = false
 
   depends_on = [
     azurerm_app_service_plan.this

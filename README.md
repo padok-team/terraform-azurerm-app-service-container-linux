@@ -52,7 +52,7 @@ module "app_service" {
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_logger"></a> [logger](#module\_logger) | git@github.com:padok-team/terraform-azurerm-logger.git | v0.1.3 |
+| <a name="module_logger"></a> [logger](#module\_logger) | git@github.com:padok-team/terraform-azurerm-logger.git | v0.2.0 |
 
 ## Inputs
 
