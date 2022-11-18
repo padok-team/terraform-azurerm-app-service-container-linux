@@ -11,6 +11,13 @@ resource "azurerm_resource_group" "this" {
   location = "France Central"
 }
 
+resource "azurerm_log_analytics_workspace" "this" {
+  name                = "${random_pet.this.id}-law"
+  location            = azurerm_resource_group.this.location
+  resource_group_name = azurerm_resource_group.this.name
+  sku                 = "PerGB2018"
+}
+
 module "app_service_container_linux" {
   source = "../.."
 
@@ -19,6 +26,8 @@ module "app_service_container_linux" {
     name     = azurerm_resource_group.this.name
     location = azurerm_resource_group.this.location
   }
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.this.id
+
   # The `image` variable is NOT tracked by Terraform.
   # Any changes to it will not be reflected in the Terraform state.
   # Note that, in order to use a Docker Hub image, you need to set an app setting
