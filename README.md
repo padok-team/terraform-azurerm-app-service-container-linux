@@ -25,7 +25,7 @@ Terraform module which creates App Service resources on Azure, configured for us
 
 ```hcl
 module "app_service" {
-  source = "https://github.com/padok-team/terraform-azurerm-app-service-container-linux?ref=v0.0.1"
+  source = "https://github.com/padok-team/terraform-azurerm-app-service-container-linux"
 
   name = "test-app-service"
   resource_group = {

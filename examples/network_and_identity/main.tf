@@ -1,9 +1,5 @@
-provider "azurerm" {
-  features {}
-}
 resource "random_pet" "this" {
   length = 2
-
 }
 
 resource "azurerm_resource_group" "this" {
@@ -62,10 +58,7 @@ module "app_service_container_linux" {
   source = "../.."
 
   name = random_pet.this.id
-  resource_group = {
-    name     = azurerm_resource_group.this.name
-    location = azurerm_resource_group.this.location
-  }
+  resource_group = azurerm_resource_group.this
 
   create_app_service_plan = false
   app_service_plan_id     = azurerm_app_service_plan.this.id
