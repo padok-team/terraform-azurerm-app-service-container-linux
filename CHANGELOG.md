@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.4...v0.2.0) (2023-01-13)
+
+
+### Features
+
+* update provider version from 2 to 3 ([3e050a6](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/commit/3e050a6a7ce764aa41ac71cbf6724436a86489bd))
+
 ## [0.1.4](https://github.com/padok-team/terraform-azurerm-app-service-container-linux/compare/v0.1.3...v0.1.4) (2022-11-18)
 
 
